@@ -10,7 +10,7 @@ import java.util.UUID;
  * @author shenke
  */
 @RestController
-@RequestMapping("/base/user")
+@RequestMapping("/user")
 public class UserController implements UserApi {
 
     @Override

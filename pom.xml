@@ -5,6 +5,10 @@
     <packaging>pom</packaging>
     <modules>
         <module>sc-base</module>
+        <module>sc-consumer-demo</module>
+        <module>sc-gateway</module>
+        <module>sc-sentinel-dashboard</module>
+        <module>sc-auth-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -97,6 +101,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--<dependency>-->
+            <!--    <groupId>org.springframework.cloud</groupId>-->
+            <!--    <artifactId>spring-cloud-alibaba-dependencies</artifactId>-->
+            <!--    <version>0.9.0.RELEASE</version>-->
+            <!--    <type>pom</type>-->
+            <!--    <scope>import</scope>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
 

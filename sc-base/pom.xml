@@ -15,6 +15,4 @@
         <module>sc-base-api</module>
         <module>sc-base-impl</module>
     </modules>
-
-
 </project>

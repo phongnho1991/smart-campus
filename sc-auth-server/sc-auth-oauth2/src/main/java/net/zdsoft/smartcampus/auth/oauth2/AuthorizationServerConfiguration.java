@@ -2,7 +2,6 @@ package net.zdsoft.smartcampus.auth.oauth2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -11,9 +10,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-
-import javax.annotation.Resource;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * @author shenke
@@ -24,28 +22,31 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //@Resource
     private AuthenticationManager authenticationManager;
 
-    //@Override
-    //public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-    //    super.configure(security);
-    //
-    //    security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
-    //}
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        super.configure(security);
+        security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+                //.allowFormAuthenticationForClients();
+    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory().withClient("my-client-id")
-                .secret("my-secret").authorizedGrantTypes("authorization_code", "client_credentials")
-                .redirectUris("http://www.baidu.com");
+                .secret("my-secret").authorizedGrantTypes("authorization_code", "client_credentials", "refresh_token")
+                .redirectUris("http://192.168.0.231:8089/login")
+                .scopes("all");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         super.configure(endpoints);
+        endpoints.tokenStore(inMemoryTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
+
     }
 
     @Bean
     public TokenStore inMemoryTokenStore() {
-        return new InMemoryTokenStore();
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
     @Bean
@@ -53,4 +54,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new InMemoryClientDetailsService();
     }
 
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+        accessTokenConverter.setSigningKey("cjs");
+        return accessTokenConverter;
+    }
 }

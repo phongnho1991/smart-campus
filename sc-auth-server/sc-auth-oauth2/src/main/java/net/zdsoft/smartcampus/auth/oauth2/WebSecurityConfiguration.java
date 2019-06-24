@@ -10,13 +10,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author shenke
  */
 @Configuration
+//@EnableOAuth2Sso
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
-        http.authorizeRequests().antMatchers("/oauth/*").permitAll()
-                .and().authorizeRequests().anyRequest().authenticated();
+
+        http.authorizeRequests().anyRequest().authenticated()
+                .and().authorizeRequests().antMatchers("/oauth/token", "/oauth/token_key").permitAll()
+                .and().formLogin().permitAll().and().httpBasic();
     }
 
     @Bean

@@ -2,6 +2,8 @@ package net.zdsoft.smartcampus.auth.oauth2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -9,7 +11,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 /**
  * @author shenke
  */
-@SpringBootApplication
+@SpringBootApplication(
+        exclude = {DataSourceAutoConfiguration.class, JdbcTemplateAutoConfiguration.class}
+)
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "net.zdsoft.**.api")
 @EnableAuthorizationServer

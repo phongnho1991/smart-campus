@@ -9,26 +9,34 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sc-gateway</artifactId>
+    <artifactId>sc-auth-center</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-httpclient</artifactId>
-            <version>10.1.0</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>javax.transaction</groupId>-->
+        <!--    <artifactId>javax.transaction-api</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
@@ -43,30 +51,20 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
             <version>0.9.0.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>sentinel-core</artifactId>
-                    <groupId>com.alibaba.csp</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
-            <version>1.6.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>sentinel-parameter-flow-control</artifactId>
-                    <groupId>com.alibaba.csp</groupId>
-                </exclusion>
-            </exclusions>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+            <version>10.1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security</artifactId>
-            <version>2.1.2.RELEASE</version>
-            <scope>compile</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>net.zdsoft</groupId>
+            <artifactId>sc-user-center-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

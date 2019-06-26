@@ -5,6 +5,7 @@ import net.zdsoft.smartcampus.user.entity.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author shenke
@@ -18,5 +19,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String username) {
         return userRepository.getUserByUsername(username).orElse(null);
+    }
+
+    @Override
+    public List<User> getUsersByUnitId(String unitId) {
+        return userRepository.getUsersByUnitId(unitId);
     }
 }

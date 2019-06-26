@@ -17,5 +17,5 @@ public interface UserClient {
     User getUserByUsername(@RequestParam String username);
 
     @GetMapping(value = "/unit-id", params = "unitId")
-    List<User> getUsersByUnitId(String unitId);
+    List<? extends User> getUsersByUnitId(String unitId);
 }

@@ -10,7 +10,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.client.InMemoryClientDetailsService;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.ApprovalStoreUserApprovalHandler;
+import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
+import org.springframework.security.oauth2.provider.approval.UserApprovalHandler;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -48,18 +51,29 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore()).accessTokenConverter(jwtAccessTokenConverter());
         endpoints.authenticationManager(this.authenticationManager);
+        endpoints.userApprovalHandler(userApprovalHandler());
     }
 
     @Bean
     public TokenStore tokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
+        JwtTokenStore jwtTokenStore = new JwtTokenStore(jwtAccessTokenConverter());
+        jwtTokenStore.setApprovalStore(approvalStore());
+        return jwtTokenStore;
     }
 
     @Bean
-    public ClientDetailsService inMemoryDetailsService() {
-        return new InMemoryClientDetailsService();
+    public ApprovalStore approvalStore() {
+        return new JdbcApprovalStore(dataSource);
     }
 
+    public UserApprovalHandler userApprovalHandler() {
+        ApprovalStoreUserApprovalHandler userApprovalHandler = new ApprovalStoreUserApprovalHandler();
+        userApprovalHandler.setApprovalStore(approvalStore());
+        return userApprovalHandler;
+    }
+
+
+    @Bean
     public ClientDetailsService jdbcClientDetailService() {
         JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
         return jdbcClientDetailsService;

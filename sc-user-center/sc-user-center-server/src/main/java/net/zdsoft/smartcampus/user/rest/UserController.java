@@ -1,7 +1,7 @@
 package net.zdsoft.smartcampus.user.rest;
 
 import net.zdsoft.smartcampus.api.UserClient;
-import net.zdsoft.smartcampus.entity.User;
+import net.zdsoft.smartcampus.user.entity.User;
 import net.zdsoft.smartcampus.user.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +26,6 @@ public class UserController implements UserClient {
 
     @Override
     public List<User> getUsersByUnitId(String unitId) {
-        return null;
+        return userService.getUsersByUnitId(unitId);
     }
 }

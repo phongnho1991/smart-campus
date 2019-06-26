@@ -16,14 +16,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         super.configure(resources);
+
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
-                .and().authorizeRequests().antMatchers("/user/username").permitAll()
-                .and()
-                .oauth2ResourceServer()
-                .jwt();
+        http.authorizeRequests().antMatchers("/user/username").permitAll()
+                .and().authorizeRequests().anyRequest().authenticated()
+                .and().httpBasic();
     }
+
 }

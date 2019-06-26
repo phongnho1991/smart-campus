@@ -8,6 +8,7 @@
         <module>sc-sentinel-dashboard</module>
         <module>sc-user-center</module>
         <module>sc-auth-center</module>
+        <module>sc-office</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

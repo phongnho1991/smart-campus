@@ -2,6 +2,7 @@ package net.zdsoft.smartcampus.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -15,7 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @author shenke
  */
-@SpringBootApplication
+@SpringBootApplication(
+        exclude = UserDetailsServiceAutoConfiguration.class
+)
 @EnableSwagger2
 public class UserCenterApp {
 

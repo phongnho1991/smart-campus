@@ -48,6 +48,11 @@
             <version>0.9.0.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+            <version>0.9.0.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0.2</version>
@@ -75,4 +80,27 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>release</name>
+            <url>http://192.168.20.53:8081/repository/maven-releases/</url>
+        </repository>
+        <repository>
+            <id>public</id>
+            <name>public</name>
+            <url>http://192.168.20.53:8081/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

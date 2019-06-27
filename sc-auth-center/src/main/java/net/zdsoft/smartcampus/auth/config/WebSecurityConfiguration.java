@@ -24,7 +24,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().authenticated()
-                .and().httpBasic();
+                .and().formLogin()//.loginPage("http://192.168.0.231:8080")
+                .and().httpBasic()
+                .and().csrf().disable();
         http.userDetailsService(userDetailsService);
     }
 

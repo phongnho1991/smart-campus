@@ -39,12 +39,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         security.allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
-
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(jdbcClientDetailService());
+        clients.jdbc(dataSource);
     }
 
     @Override
@@ -70,13 +69,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         ApprovalStoreUserApprovalHandler userApprovalHandler = new ApprovalStoreUserApprovalHandler();
         userApprovalHandler.setApprovalStore(approvalStore());
         return userApprovalHandler;
-    }
-
-
-    @Bean
-    public ClientDetailsService jdbcClientDetailService() {
-        JdbcClientDetailsService jdbcClientDetailsService = new JdbcClientDetailsService(dataSource);
-        return jdbcClientDetailsService;
     }
 
     @Bean

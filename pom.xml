@@ -5,7 +5,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>sc-gateway</module>
-        <module>sc-sentinel-dashboard</module>
         <module>sc-user-center</module>
         <module>sc-auth-center</module>
         <module>sc-office</module>
@@ -106,14 +105,5 @@
             <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -22,7 +22,7 @@ public class SecurityConfig {
     //            .anyExchange().authenticated()
     //            .and()
     //            .oauth2ResourceServer()
-    //            .jwt()
+    //            .jwt();
     //    return http.build();
     //}
 }

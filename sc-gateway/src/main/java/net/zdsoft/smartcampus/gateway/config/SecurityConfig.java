@@ -18,11 +18,19 @@ public class SecurityConfig {
 
     //@Bean
     //public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+    //    //RSAPublicKey publicKey =
     //    http.authorizeExchange()
     //            .anyExchange().authenticated()
     //            .and()
     //            .oauth2ResourceServer()
-    //            .jwt();
+    //            .jwt();//.jwkSetUri()
+    //
+    //
     //    return http.build();
+    //}
+    //
+    //@Bean
+    //public ReactiveJwtDecoder jwtDecoder() {
+    //    return new NimbusJwtDecoderJwkSupport()
     //}
 }

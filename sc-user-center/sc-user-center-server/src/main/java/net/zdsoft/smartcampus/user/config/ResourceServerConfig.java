@@ -27,13 +27,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/user/username").permitAll()
+        http.authorizeRequests().antMatchers("/user/username", "/actuator/health").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated()
                 .and().httpBasic();
     }
 
     @Bean
-    public JwtAccessTokenConverterRestTemplateCustomizer loadBalanceJwtAccessTokenRestTemplateCustomer(LoadBalancerInterceptor loadBalancerInterceptor) {
+    public JwtAccessTokenConverterRestTemplateCustomizer loadBalanceJwtAccessTokenRestTemplateCustomer(
+            LoadBalancerInterceptor loadBalancerInterceptor) {
         return template-> {
             List<ClientHttpRequestInterceptor> interceptors = template.getInterceptors();
             interceptors.add(loadBalancerInterceptor);

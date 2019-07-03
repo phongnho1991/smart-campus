@@ -3,6 +3,7 @@ package net.zdsoft.smartcampus.user;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -20,6 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         exclude = UserDetailsServiceAutoConfiguration.class
 )
 @EnableSwagger2
+@EnableDiscoveryClient
 public class UserCenterApp {
 
     public static void main(String[] args) {

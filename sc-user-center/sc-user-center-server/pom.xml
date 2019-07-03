@@ -64,6 +64,11 @@
             <artifactId>sc-user-center-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-client</artifactId>
+        </dependency>
     </dependencies>
 
     <repositories>

@@ -1,5 +1,6 @@
 package net.zdsoft.smartcampus.user.config;
 
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.JwtAccessTokenConverterRestTemplateCustomizer;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
 import org.springframework.context.annotation.Bean;
@@ -27,9 +28,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/user/username", "/actuator/health").permitAll()
-                .and().authorizeRequests().anyRequest().authenticated()
-                .and().httpBasic();
+        //http.authorizeRequests().antMatchers("/user/username", "/actuator/*", "/actuator").permitAll()
+        //        .and().authorizeRequests().anyRequest().authenticated()
+        //        .and().httpBasic();
+        http.authorizeRequests().anyRequest().permitAll();
+
+        //http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority()
     }
 
     @Bean

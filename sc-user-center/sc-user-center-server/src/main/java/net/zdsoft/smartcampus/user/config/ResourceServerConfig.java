@@ -28,12 +28,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        //http.authorizeRequests().antMatchers("/user/username", "/actuator/*", "/actuator").permitAll()
-        //        .and().authorizeRequests().anyRequest().authenticated()
-        //        .and().httpBasic();
-        http.authorizeRequests().anyRequest().permitAll();
-
-        //http.authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority()
+        http.authorizeRequests().antMatchers("/user/username", "/actuator/health").permitAll()
+                .and().requestMatcher(EndpointRequest.toAnyEndpoint()).authorizeRequests().anyRequest().permitAll()//hasAuthority("sc-admin-server")
+                .and().authorizeRequests().anyRequest().authenticated();
     }
 
     @Bean

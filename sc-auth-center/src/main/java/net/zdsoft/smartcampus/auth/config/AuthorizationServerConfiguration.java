@@ -53,6 +53,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         endpoints.tokenStore(tokenStore()).accessTokenConverter(jwtAccessTokenConverter());
         endpoints.authenticationManager(this.authenticationManager);
         endpoints.userApprovalHandler(userApprovalHandler());
+
+        //endpoints.pathMapping("/oauth/confirm_access", "/szxy/oauth/confirm_access");
     }
 
     @Bean

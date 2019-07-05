@@ -8,6 +8,7 @@
         <module>sc-user-center</module>
         <module>sc-auth-center</module>
         <module>sc-office</module>
+        <module>sc-admin-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

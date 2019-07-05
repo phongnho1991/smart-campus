@@ -37,11 +37,8 @@ public class UserCenterApp {
                 .build().apiInfo(apiEndPointsInfo());
     }
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Spring Boot REST API")
-                .description("Employee Management REST API")
-                .contact(new Contact("Ramesh Fadatare", "www.javaguides.net", ""))
-                .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+        return new ApiInfoBuilder().title("User Center Api")
+                .description("用户相关API")
                 .version("1.0.0")
                 .build();
     }

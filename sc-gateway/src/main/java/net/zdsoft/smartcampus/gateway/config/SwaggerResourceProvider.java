@@ -45,9 +45,8 @@ public class SwaggerResourceProvider implements SwaggerResourcesProvider {
                 .filter(route -> !self.equals(route.getUri().getHost()))
                 .subscribe(route -> routeHosts.add(route.getUri().getHost()));
 
-        // 记录已经添加过的server，存在同一个应用注册了多个服务在nacos上
         Set<String> dealed = new HashSet<>();
-        routeHosts.stream().filter("sc-user-center"::equals).forEach(instance -> {
+        routeHosts.stream().filter(e->e.startsWith("sc-")).forEach(instance -> {
             // 拼接url，样式为/serviceId/v2/api-info，当网关调用这个接口时，会自动通过负载均衡寻找对应的主机
             String url = "/" + instance + SWAGGER2URL;
             if (!dealed.contains(url)) {

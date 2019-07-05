@@ -5,10 +5,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.models.HttpMethod;
+import lombok.extern.slf4j.Slf4j;
 import net.zdsoft.smartcampus.api.UserClient;
 import net.zdsoft.smartcampus.user.entity.User;
 import net.zdsoft.smartcampus.user.service.UserService;
+import org.slf4j.Logger;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("user")
 @Api(value = "User", tags = "User", produces = MediaType.APPLICATION_JSON_VALUE)
+@Slf4j
 public class UserController implements UserClient {
 
     @Resource
@@ -45,6 +49,8 @@ public class UserController implements UserClient {
 
     @Override
     public List<User> getUsersByUnitId(String unitId) {
+        Object auth = SecurityContextHolder.getContext().getAuthentication();
+        log.info("auth is [{}]", auth);
         return userService.getUsersByUnitId(unitId);
     }
 }

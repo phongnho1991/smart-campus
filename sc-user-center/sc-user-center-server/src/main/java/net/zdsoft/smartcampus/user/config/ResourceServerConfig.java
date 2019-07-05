@@ -28,8 +28,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/user/username", "/actuator/health").permitAll()
-                .and().requestMatcher(EndpointRequest.toAnyEndpoint()).authorizeRequests().anyRequest().permitAll()//hasAuthority("sc-admin-server")
+
+
+        http.authorizeRequests().antMatchers("/user/username", "/actuator/health", "/actuator").permitAll()
+                .and().authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("sc-admin-server")
                 .and().authorizeRequests().anyRequest().authenticated();
     }
 

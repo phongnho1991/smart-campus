@@ -52,7 +52,7 @@ public class UserCenterApp {
                         .basePackage("net.zdsoft.smartcampus.user.rest"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(apiEndPointsInfo())
-                .securitySchemes(Arrays.asList(securityScheme(), apiKey()))
+                .securitySchemes(Arrays.asList(securityScheme()))
                 .securityContexts(Collections.singletonList(securityContext()));
 
     }
@@ -64,21 +64,17 @@ public class UserCenterApp {
                 .build();
     }
 
-    private ApiKey apiKey() {
-
-        return new ApiKey(HttpHeaders.AUTHORIZATION, "Authorization", "headers");
-    }
-
     private SecurityScheme securityScheme() {
         GrantType grantType = new ResourceOwnerPasswordCredentialsGrant("http://localhost:8088/sc-auth/oauth/token");
 
         return new OAuthBuilder().grantTypes(Collections.singletonList(grantType))
-                .name("sc-user-center")
+                .name("oauth2")
                 .scopes(Collections.singletonList(new AuthorizationScope("app", "app"))).build();
     }
 
     private SecurityContext securityContext() {
         return SecurityContext.builder()
+                /*reference <==> securityScheme name */
                 .securityReferences(Collections.singletonList(new SecurityReference("oauth2", new AuthorizationScope[]{new AuthorizationScope("app", "app")})))
                 .forPaths(PathSelectors.any())
                 .build();

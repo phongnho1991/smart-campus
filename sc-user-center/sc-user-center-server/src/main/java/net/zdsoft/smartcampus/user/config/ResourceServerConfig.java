@@ -30,7 +30,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
 
-        http.authorizeRequests().antMatchers("/user/username", "/actuator/health", "/actuator").permitAll()
+        http.authorizeRequests().antMatchers("/user/username", "/actuator/health",
+                "/actuator", "/swagger-resources/**", "/v2/api-docs", "/swagger-ui.html", "/webjars/**").permitAll()
                 .and().authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("sc-admin-server")
                 .and().authorizeRequests().anyRequest().authenticated();
     }

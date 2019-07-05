@@ -25,7 +25,14 @@ public class SwaggerResourceController {
 
     @RequestMapping(value = "/configuration/security")
     public ResponseEntity<SecurityConfiguration> securityConfiguration() {
-        return new ResponseEntity<>(SecurityConfigurationBuilder.builder().build(), HttpStatus.OK);
+
+        SecurityConfiguration securityConfiguration = SecurityConfigurationBuilder.builder()
+                .clientId("sc-admin-server")
+                .clientSecret("sc-admin-server-secret")
+                .build();
+
+
+        return new ResponseEntity<>(securityConfiguration, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/configuration/ui")

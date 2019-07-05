@@ -11,6 +11,7 @@ import net.zdsoft.smartcampus.user.entity.User;
 import net.zdsoft.smartcampus.user.service.UserService;
 import org.slf4j.Logger;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,7 @@ public class UserController implements UserClient {
         return userService.getUserByUsername(username);
     }
 
+    //@PreAuthorize("hasAnyAuthority('sc-admin-server')")
     @Override
     public List<User> getUsersByUnitId(String unitId) {
         Object auth = SecurityContextHolder.getContext().getAuthentication();

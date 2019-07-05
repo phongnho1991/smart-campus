@@ -10,6 +10,9 @@ import net.zdsoft.smartcampus.user.entity.User;
 import net.zdsoft.smartcampus.user.service.UserService;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,5 +54,16 @@ public class UserController implements UserClient {
         Object auth = SecurityContextHolder.getContext().getAuthentication();
         log.info("auth is [{}]", auth);
         return userService.getUsersByUnitId(unitId);
+    }
+
+    @PutMapping("")
+    public void updateUser(User user) {
+        //update
+    }
+
+    @ApiOperation(value = "删除用户以及和用户相关的数据")
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable("id") String id) {
+        //delete
     }
 }

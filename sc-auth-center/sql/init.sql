@@ -1,3 +1,4 @@
+use oauth2;
 -- ----------------------------
 -- Table structure for oauth_client_details
 -- ----------------------------

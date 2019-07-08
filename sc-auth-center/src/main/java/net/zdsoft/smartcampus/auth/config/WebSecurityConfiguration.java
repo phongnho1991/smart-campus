@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.annotation.Resource;
 
@@ -28,8 +29,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("sc-admin-server")
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
-                .and().formLogin()//.loginPage("http://192.168.0.231:8080")
-                .and().httpBasic()
+                .and().formLogin().loginPage("http://192.168.0.231:8080")
+                .loginProcessingUrl("/login")
+                .permitAll()
+                //.and().httpBasic()
                 .and().csrf().disable();
         http.userDetailsService(userDetailsService);
     }

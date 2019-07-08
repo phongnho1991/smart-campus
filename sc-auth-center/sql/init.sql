@@ -30,5 +30,11 @@ CREATE TABLE oauth_approvals
   primary key (userid)
 ) engine=InnoDB default charset =utf8mb4 comment ='oauth2 app授权表';
 
-INSERT INTO `oauth_client_details`
-VALUES ('gateway', null, 'gateway-secret', 'app', 'authorization_code,password,refresh_token', null, null, '28800', null, null, null);
+-- INSERT INTO `oauth_client_details`
+-- VALUES ('gateway', null, 'gateway-secret', 'app', 'authorization_code,password,refresh_token', null, null, '28800', null, null, null);
+
+
+INSERT INTO oauth2.oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES ('gateway', null, 'gateway-secret', 'app', 'authorization_code,password,refresh_token', 'http://192.168.0.231:8088/login/oauth2/code/login-client', null, 28800, null, null, null);
+INSERT INTO oauth2.oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES ('office', null, 'office-secret', 'app', 'authorization_code,password,refresh_token', null, null, 28800, null, null, null);
+INSERT INTO oauth2.oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES ('sc-admin-server', null, 'sc-admin-server-secret', 'app', 'authorization_code,password,refresh_token', 'http://localhost:9099/login', null, 28800, null, null, null);
+INSERT INTO oauth2.oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES ('system', null, '$2a$10$QN9vg9iX3WFovHnDX7bJO.rWWDkS0VP7HYhV.HDiVEE56xPwZfjKe', 'app', 'authorization_code,password,refresh_token,client_credentials', 'http://192.168.0.231:8088/login/oauth2/code/login-client', null, 28800, null, null, null);

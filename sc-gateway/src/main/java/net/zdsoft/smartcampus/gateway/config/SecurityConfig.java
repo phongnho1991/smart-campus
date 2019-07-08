@@ -6,31 +6,19 @@ import org.springframework.context.annotation.Configuration;
  * @author shenke
  */
 @Configuration
+//@EnableWebFluxSecurity
 public class SecurityConfig {
 
-    //@Autowired
-    //private TokenRelayGatewayFilterFactory filterFactory;
-    //
-    //@Bean
-    //public RouteLocator customRouteLocator() {
-    //
-    //}
 
     //@Bean
     //public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
     //    //RSAPublicKey publicKey =
     //    http.authorizeExchange()
-    //            .anyExchange().authenticated()
-    //            .and()
-    //            .oauth2ResourceServer()
-    //            .jwt();//.jwkSetUri()
-    //
-    //
+    //            .and().authorizeExchange()
+    //            .pathMatchers("/login", "/logout", "/oauth/token", "/oauth/authorize", "/oauth/confirm_access", "/login/oauth2/**")
+    //            .permitAll()
+    //            .and().authorizeExchange().anyExchange().authenticated()
+    //            .and().csrf().disable();
     //    return http.build();
-    //}
-    //
-    //@Bean
-    //public ReactiveJwtDecoder jwtDecoder() {
-    //    return new NimbusJwtDecoderJwkSupport()
     //}
 }

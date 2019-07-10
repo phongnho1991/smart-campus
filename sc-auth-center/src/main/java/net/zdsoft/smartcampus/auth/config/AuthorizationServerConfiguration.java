@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -19,6 +20,7 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
 import javax.annotation.Resource;
@@ -37,12 +39,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private AuthenticationManager authenticationManager;
     @Resource
     private DataSource dataSource;
+    @Resource
+    private TokenStore tokenStore;
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("permitAll()");
+
     }
 
     @Override
@@ -57,18 +62,25 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore()).accessTokenConverter(jwtAccessTokenConverter());
+        endpoints.tokenStore(tokenStore).accessTokenConverter(jwtAccessTokenConverter());
         endpoints.authenticationManager(this.authenticationManager);
         endpoints.userApprovalHandler(userApprovalHandler());
+
 
         //endpoints.pathMapping("/oauth/confirm_access", "/szxy/oauth/confirm_access");
     }
 
-    @Bean
+    //@Bean
     public TokenStore tokenStore() throws IOException {
         JwtTokenStore jwtTokenStore = new JwtTokenStore(jwtAccessTokenConverter());
         jwtTokenStore.setApprovalStore(approvalStore());
         return jwtTokenStore;
+    }
+
+    @Bean
+    public TokenStore redisTokenStore(RedisConnectionFactory redisConnectionFactory) {
+        RedisTokenStore redisTokenStore = new RedisTokenStore(redisConnectionFactory);
+        return redisTokenStore;
     }
 
     @Bean

@@ -25,11 +25,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers( "/actuator/health", "/actuator").permitAll()
+        http.authorizeRequests().antMatchers( "/actuator/health", "/actuator", "/actuator/info").permitAll()
                 .and().authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("sc-admin-server")
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
-                .and().formLogin()//.loginPage("http://192.168.0.231:8080")
+                .and().formLogin().loginPage("http://192.168.0.231:8080")
                 .loginProcessingUrl("/login")
                 .permitAll()
                 //.and().httpBasic()

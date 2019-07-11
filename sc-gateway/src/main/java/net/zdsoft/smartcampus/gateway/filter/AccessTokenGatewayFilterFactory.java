@@ -28,10 +28,13 @@ public class AccessTokenGatewayFilterFactory extends AbstractGatewayFilterFactor
 
     private PathPatternParser DEFAULT_PARSER = new PathPatternParser();
 
-    @Autowired
-    private LoadBalancerExchangeFilterFunction loadBalancerExchangeFilterFunction;
+    private final LoadBalancerExchangeFilterFunction loadBalancerExchangeFilterFunction;
 
     private WebClient webClient;
+
+    public AccessTokenGatewayFilterFactory(LoadBalancerExchangeFilterFunction loadBalancerExchangeFilterFunction) {
+        this.loadBalancerExchangeFilterFunction = loadBalancerExchangeFilterFunction;
+    }
 
 
     @Override

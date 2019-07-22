@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author shenke
  */
-@FeignClient(value = "sc-user-center", path = "user")
+@FeignClient(value = "sc-user-center", path = "user", fallbackFactory = )
 public interface UserClient {
 
     @GetMapping(value = "/username", params = "username")

@@ -1,5 +1,7 @@
 package net.zdsoft.smartcampus.user.rest;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -44,6 +46,7 @@ public class UserController implements UserClient {
             response = User.class,
             message = "User"
     )
+    @HystrixCommand(fallbackMethod = )
     @Override
     public User getUserByUsername(@ApiParam(value = "用户名", required = true) String username) {
         return userService.getUserByUsername(username);
@@ -63,7 +66,7 @@ public class UserController implements UserClient {
         //update
     }
 
-    @ApiOperation(value = "删除用户以及和用户相关的数据")
+    @ApiOperation(value = "删除用户以及和用户相关的数据2342342")
     @DeleteMapping("{id}")
     public void deleteUser(@PathVariable("id") String id) {
         //delete

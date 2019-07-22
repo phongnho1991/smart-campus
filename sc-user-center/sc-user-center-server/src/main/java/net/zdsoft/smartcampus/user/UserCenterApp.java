@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(
         exclude = UserDetailsServiceAutoConfiguration.class
 )
-@EnableSwagger2
 @EnableDiscoveryClient
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class UserCenterApp {

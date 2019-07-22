@@ -29,7 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().requestMatchers(EndpointRequest.toAnyEndpoint()).hasAuthority("sc-admin-server")
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
-                .and().formLogin().loginPage("http://192.168.0.231:8080")
+                .and().formLogin()//.loginPage("http://192.168.0.231:8080")
                 .loginProcessingUrl("/login")
                 .permitAll()
                 //.and().httpBasic()

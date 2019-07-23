@@ -13,9 +13,12 @@ public class Swagger2Properties {
 
     private ApiInfo apiInfo;
     private ApiSelector apiSelector;
+    private Docket docket;
 
-    private static class Docket {
+    @Data
+    public static class Docket {
         private boolean applyDefaultResponseMessages = false;
+        private String groupName;
     }
 
     @Data

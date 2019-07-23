@@ -1,5 +1,6 @@
 package net.zdsoft.smartcampus.commons.rs;
 
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -32,4 +33,9 @@ public class ResponseImpl<T> implements Response<T> {
 
     @ApiModelProperty(value = "表单提交时，后端校验表单错误信息")
     private List<FieldError> errors;
+
+    @Override
+    public String toString() {
+        return JSONObject.toJSONString(this);
+    }
 }

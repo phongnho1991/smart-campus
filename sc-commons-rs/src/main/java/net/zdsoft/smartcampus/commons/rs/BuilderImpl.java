@@ -1,9 +1,5 @@
 package net.zdsoft.smartcampus.commons.rs;
 
-import org.springframework.validation.BindingResult;
-
-import java.util.Objects;
-
 /**
  * @author shenke
  * @date 2019-07-23 14:49
@@ -39,4 +35,8 @@ public abstract class BuilderImpl<T, B extends Builder<T, B>> implements Builder
         return message(String.format(message, args));
     }
 
+    @Override
+    public Response<T> build() {
+        return getResponse();
+    }
 }

@@ -36,8 +36,4 @@ public class ValidatorResponseBuilderImpl<T> extends BuilderImpl<T, ValidatorRes
         return new ValidatorResponseBuilder.ErrorBuilderImpl<>();
     }
 
-    @Override
-    public <R> Response<R> build() {
-        return (Response<R>) response;
-    }
 }

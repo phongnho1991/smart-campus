@@ -16,11 +16,6 @@ public class ResponseBuilderImpl<T> extends BuilderImpl<T, ResponseBuilder<T>> i
     }
 
     @Override
-    public Response<T> build() {
-        return response;
-    }
-
-    @Override
     public <R> ResponseBuilder<R> to(Class<R> target) {
         if (Objects.isNull(getResponse().getData())) {
             return (ResponseBuilder<R>) this;

@@ -1,7 +1,5 @@
 package net.zdsoft.smartcampus.commons.rs;
 
-import org.springframework.validation.BindingResult;
-
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -22,4 +20,6 @@ public interface Builder<T, B extends Builder<T, B>> {
     default B data(Supplier<T> supplier) {
         return this.data(Objects.requireNonNull(supplier).get());
     }
+
+    Response<T> build();
 }

@@ -1,8 +1,5 @@
 package net.zdsoft.smartcampus.commons.rs;
 
-import java.util.Objects;
-import java.util.function.Supplier;
-
 /**
  * @author shenke
  * @date 2019-07-12 15:15
@@ -23,6 +20,4 @@ public interface ResponseBuilder<T> extends Builder<T, ResponseBuilder<T>> {
      * @return this
      */
     <R> ResponseBuilder<R> to(Class<R> target);
-
-    Response<T> build();
 }

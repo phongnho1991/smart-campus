@@ -12,11 +12,22 @@ import java.util.function.Supplier;
  */
 public interface Response<T> {
 
+    @FunctionalInterface
+    interface Execute {
+
+        void execute();
+    }
+
     @Override
     String toString();
 
     static ResponseBuilder<Void> ok() {
         return ok((Void) null);
+    }
+
+    static ResponseBuilder<Void> ok(Execute execute) {
+        execute.execute();
+        return ok();
     }
 
     static <T> ResponseBuilder<T> ok(T data) {
@@ -46,4 +57,6 @@ public interface Response<T> {
     static <T> ValidatorResponseBuilder.ErrorBuilder<T> error(BindingResult bindingResult) {
         return new ValidatorResponseBuilder.ErrorBuilderImpl<T>().error(bindingResult);
     }
+
+
 }

@@ -13,6 +13,7 @@
         <module>sc-commons-utils</module>
         <module>sc-boot-autoconfigure</module>
         <module>validator-demo</module>
+        <module>sc-common-validator</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

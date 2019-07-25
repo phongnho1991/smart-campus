@@ -1,5 +1,7 @@
 package net.zdsoft.smartcampus.common.validator.constraints;
 
+import net.zdsoft.smartcampus.common.validator.constraintsvalidator.ChineseMobileValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -18,7 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({ FIELD, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = { })
+@Constraint(validatedBy = ChineseMobileValidator.class)
 public @interface ChineseMobile {
 
     /**
@@ -26,7 +28,7 @@ public @interface ChineseMobile {
      */
     boolean strict() default false;
 
-    String message() default "{javax.validation.constraints.Null.message}";
+    String message() default "{net.zdsoft.smartcampus.common.validator.constraints.ChineseMobile.message}";
 
     Class<?>[] groups() default { };
 

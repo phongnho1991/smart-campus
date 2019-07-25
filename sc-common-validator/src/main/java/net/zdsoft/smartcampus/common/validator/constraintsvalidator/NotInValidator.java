@@ -1,6 +1,6 @@
 package net.zdsoft.smartcampus.common.validator.constraintsvalidator;
 
-import net.zdsoft.smartcampus.common.validator.constraints.In;
+import net.zdsoft.smartcampus.common.validator.constraints.NotIn;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -9,19 +9,20 @@ import java.util.Collections;
 
 /**
  * @author shenke
- * @date 2019-07-24 15:53
+ * @date 2019-07-25 09:27
  */
-public class InValidator implements ConstraintValidator<In, String> {
+public class NotInValidator implements ConstraintValidator<NotIn, String> {
 
     private String[] targets;
 
     @Override
-    public void initialize(In constraintAnnotation) {
-        this.targets = constraintAnnotation.targets();
+    public void initialize(NotIn constraintAnnotation) {
+        targets = constraintAnnotation.targets();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
+
         if (value == null) {
             return true;
         }

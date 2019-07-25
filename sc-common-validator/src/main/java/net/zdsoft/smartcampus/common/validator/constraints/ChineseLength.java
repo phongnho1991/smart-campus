@@ -1,5 +1,7 @@
 package net.zdsoft.smartcampus.common.validator.constraints;
 
+import net.zdsoft.smartcampus.common.validator.constraintsvalidator.ChineseLengthValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -18,10 +20,12 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({ FIELD, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = { })
+@Constraint(validatedBy = ChineseLengthValidator.class)
 public @interface ChineseLength {
 
-    String message() default "{javax.validation.constraints.Null.message}";
+    int max() default Integer.MAX_VALUE;
+
+    String message() default "{net.zdsoft.smartcampus.common.validator.constraints.ChineseLength.message}";
 
     Class<?>[] groups() default { };
 

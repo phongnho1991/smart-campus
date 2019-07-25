@@ -26,6 +26,6 @@ public class InValidator implements ConstraintValidator<In, String> {
             return true;
         }
 
-        return Collections.binarySearch(Arrays.asList(targets), value) == -1;
+        return Collections.binarySearch(Arrays.asList(targets), value) != -1;
     }
 }

@@ -24,7 +24,7 @@ public @interface NotIn {
 
     String[] targets() default {};
 
-    String message() default "{net.zdsoft.smartcampus.common.validator.constraints.In.message}";
+    String message() default "{net.zdsoft.smartcampus.common.validator.constraints.NotIn.message}";
 
     Class<?>[] groups() default { };
 
